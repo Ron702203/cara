@@ -1,0 +1,93 @@
+<%-- 
+    Document   : inde
+    Created on : May 7, 2023, 9:38:59 PM
+    Author     : ACER
+--%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+        <link href="./public/admin/assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="./public/admin/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+        <link id="pagestyle" href="./public/admin/assets/css/material-dashboard.css?v=3.0.5" rel="stylesheet" />
+        <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+        <link rel="apple-touch-icon" href="./assets/img/apple-icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    </head>
+    <body class="g-sidenav-show  bg-gray-200">
+
+        <%@include file="../inc/sidebar.jsp" %>
+        <main class="main-content border-radius-lg ">
+            <%@include file="../inc/navbar.jsp" %>
+            <div class="container-fluid py-4">
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card my-4">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                                    <h6 class="text-white text-capitalize ps-3">Category table</h6>
+                                </div>
+                            </div>
+                            <div class="card-body px-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">image</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <div class="card-header">
+                                            <a href="CreateCategoryServlet"><i class="fas fa-table me-1"></i> Create new Category</a>
+
+                                        </div>
+
+                                        <c:forEach items="${categoryList}" var="category" >
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                       <img src="${category.image}" class="avatar avatar-sm me-3 border-radius-lg" alt="user2">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <p class="text-xs font-weight-bold mb-0">${category.name}</p>
+                                                    </div>
+                                                </td>
+
+
+                                                <td class="align-middle">
+                                                    <a href="EditCategoryServlet?category_id=${category.id}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <a href="DeleteCategoryServlet?category_id=${category.id}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%@include file="../inc/footer.jsp" %>
+        </main>
+
+    </body>
+</html>
